@@ -31,3 +31,18 @@ class BaseModel:
         string = "[{}] ({}) <{}>".format(type(self).__name__,
                                          self.id,
                                          self.__dict__)
+        return string
+
+    def to_dict(self):
+        """Returns diction representation of the object
+        - only instance attributes would be returned
+        - a key __class__ would be added to the new object
+        - created_at and update_at would be converted to ISO format
+        """
+        dict_1 = self.__dict__.copy()
+        dict_1["__class__"] = self.__class__.__name__
+        for k, v in self.__dict__.items():
+            if k in ("created_at", "updated_at"):
+                v = self.__dict__[k].isoformat()
+                dict_1[k] = v
+        return dict_1

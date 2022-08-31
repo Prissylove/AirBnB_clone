@@ -12,7 +12,7 @@ CLASSES = [
 ]
 
 
-class Console(cmd.Cmd):
+class HBNBCommand(cmd.Cmd):
     """This defines the class for console
     """
 
@@ -28,6 +28,10 @@ class Console(cmd.Cmd):
     def do_quit(self, argv):
         'Exits the console'
         return True
+
+    def emptyline(self):
+        """Command to execute when empty line + <ENTER> key"""
+        pass
 
 
 def parse(arg):
@@ -70,4 +74,4 @@ def check_args(args):
 
 
 if __name__ == '__main__':
-    Console().cmdloop()
+    HBNBCommand().cmdloop()
