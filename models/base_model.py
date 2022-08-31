@@ -2,6 +2,7 @@
 """ Base model for console for HBnB"""
 from uuid import uuid4
 from datetime import datetime
+import models
 
 
 class BaseModel:
@@ -14,6 +15,8 @@ class BaseModel:
         if not kwargs:
             self.id = str(uuid4())
             self.created_at = self.updated_at = datetime.now()
+            models.storage.new(self)
+            models.storage.save()
         else:
             for key, value in kwargs.items():
                 if key != '__class__':
@@ -25,6 +28,7 @@ class BaseModel:
     def save(self):
         """Save method updates the public instance attribute `updated_at` """
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def __str__(self):
         """Returns printable string representation of the rectangle"""

@@ -20,6 +20,24 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb)'
     file = None
 
+    def default(self, arg):
+        """Default behavior for the cmd module"""
+        action_map = {
+            "create": self.do_create,
+
+        }
+        match = re.search(r"\.", arg)
+        if match:
+            arg1 = [arg[:match.span()[0]], arg[match.span()[1]:]]
+            match = re.search(r"\((.*?)\)", arg1[1])
+            if match:
+                command = [arg1[1][:match.span()[0]], match.group()[1:-1]]
+                if command[0] in action_map:
+                    call = "{} {}".format(arg1[0], command[1])
+                    return action_map[command[0]](call)
+        print("*** Unknown syntax: {}".format(arg))
+        return False
+
     def do_EOF(self, argv):
         'Responds to EOF  Command'
         print("")
@@ -33,6 +51,13 @@ class HBNBCommand(cmd.Cmd):
         """Command to execute when empty line + <ENTER> key"""
         pass
 
+    def do_create(self, argv):
+        """Creates a new instance of the BaseModel, and saves it to `JSON`
+        File and returns the id"""
+        args = check_args(argv)
+        if args:
+            print(eval(args[0])().id)
+            self.storage.save()
 
 def parse(arg):
     """ Parses arguments passed to command """
