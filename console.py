@@ -6,10 +6,12 @@ from shlex import split
 
 import models
 from models.base_model import BaseModel
+from models.user import User
 
 # A global constant since both functions within and outside uses it.
 CLASSES = [
-    "BaseModel"
+    "BaseModel",
+    "User"
 ]
 
 
