@@ -155,6 +155,7 @@ class HBNBCommand(cmd.Cmd):
                 count += 1
         print(count)
 
+
 def parse(arg):
     """ Parses arguments passed to command """
     curly_braces = re.search(r"\{(.*?)\}", arg)
