@@ -27,7 +27,7 @@
   }
   
   .locations,
-  .amenities {
+  div.amenities {
     display: inline-block;
     height: 100%;
     width: 25%;
@@ -69,7 +69,7 @@
   }
 
   .locations .popover,
-  .amenities .popover {
+  div.amenities .popover {
     display: none;
     background-color: #fafafa;
     width: 25%;
@@ -93,6 +93,6 @@
   }
 
   .locations:hover .popover,
-  .amenities:hover .popover {
+  div.amenities:hover .popover {
     display: block;
   }
